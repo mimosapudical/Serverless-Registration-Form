@@ -46,8 +46,5 @@ Access-Control-Allow-Methods: POST
 
 
 
-Follow our tutorials here: https://www.youtube.com/@amonkincloud/videos \
-Follow our blog here: https://amonkincloud.com/ \
-Follow my personal blog here:https://dev.to/yeshwanthlm/ \
-Follow us on Instagram: https://www.instagram.com/amonkincloud/ \
-For queries write to us at: amonkincloud@gmail.com 
+Thanks for tutorials here: https://www.youtube.com/@amonkincloud/videos \
+
