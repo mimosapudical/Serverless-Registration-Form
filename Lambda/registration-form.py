@@ -2,16 +2,16 @@
 import boto3
 import json
 
-# Initialize DynamoDB and SNS clients
+# Initialize DynamoDB and SES clients
 dynamodb = boto3.resource('dynamodb')
-sns = boto3.client('sns')
+ses = boto3.client('ses')
 
-# Replace with your DynamoDB table name and SNS topic ARN
+# Replace with your DynamoDB table name and SES sender email
 TABLE_NAME = 'registration-table'
-SNS_TOPIC_ARN = 'arn:aws:sns:us-west-2:982081045604:emailR:64ff3f22-7d87-44f0-8975-9aef6d424e52'
+SES_SENDER_EMAIL = 'cjzmimosapudical@gmail.com'
 
 def lambda_handler(event, context):
-    table = dynamodb.Table(registration-table)
+    table = dynamodb.Table(registeration-table)
 
     try:
         # Create new item in DynamoDB table
@@ -24,16 +24,29 @@ def lambda_handler(event, context):
             }
         )
 
-        # Publish a notification to SNS
-        sns.publish(
-            TopicArn=arn:aws:sns:us-west-2:982081045604:emailR:64ff3f22-7d87-44f0-8975-9aef6d424e52,
-            Subject='New User Registration',
-            Message=(
-                f"A new user has registered:\n\n"
-                f"Name: {event['name']}\n"
-                f"Email: {event['email']}\n"
-                f"Phone: {event['phone']}"
-            )
+        # Send an email using Amazon SES
+        email_response = ses.send_email(
+            Source=SES_SENDER_EMAIL,
+            Destination={
+                'ToAddresses': [event['email']]  # User's email
+            },
+            Message={
+                'Subject': {
+                    'Data': 'Welcome to Our Service!'
+                },
+                'Body': {
+                    'Text': {
+                        'Data': (
+                            f"Hi {event['name']},\n\n"
+                            f"Thank you for registering with us. Here are your details:\n\n"
+                            f"Name: {event['name']}\n"
+                            f"Email: {event['email']}\n"
+                            f"Phone: {event['phone']}\n\n"
+                            f"Welcome aboard!\n"
+                        )
+                    }
+                }
+            }
         )
 
         # Return response
@@ -43,7 +56,7 @@ def lambda_handler(event, context):
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'message': 'Registration successful'})
+            'body': json.dumps({'message': 'Registration successful, email sent'})
         }
 
     except Exception as e:
