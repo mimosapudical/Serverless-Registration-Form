@@ -2,16 +2,24 @@
 
 ## Overview
 This project implements a **Serverless Registration Form** using **AWS Lambda**, **API Gateway**, and **DynamoDB**.  
-Users submit their registration information via an HTTP **POST** request; the Lambda function processes the input and stores the data in DynamoDB.
+Users submit their registration information via an HTTP **POST** request. The Lambda function processes the input and stores the data into DynamoDB.
 
 ---
 
 ## Tech Stack
-- **AWS Lambda** (Python 3.9)  
-- **AWS DynamoDB**  
-- **AWS API Gateway**  
-- **IAM Roles** (secure permission control)  
-- **CloudWatch** (logging)
+- AWS Lambda (Python 3.9)
+- AWS DynamoDB
+- AWS API Gateway
+- IAM Roles (for permission management)
+- CloudWatch (for logging)
+
+---
+
+## Project Structure
+```plaintext
+registration-form/
+  ├── lambda_function.py   # Main Lambda handler
+  ├── README.md             # Project documentation
 
 ---## Setup Instructions
 
