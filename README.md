@@ -15,11 +15,6 @@ Users submit their registration information via an HTTP **POST** request. The La
 
 ---
 
-## Project Structure
-```plaintext
-registration-form/
-  ├── lambda_function.py   # Main Lambda handler
-  ├── README.md             # Project documentation
 
 ---## Setup Instructions
 
