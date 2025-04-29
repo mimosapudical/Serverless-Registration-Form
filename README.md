@@ -16,7 +16,7 @@ Users submit their registration information via an HTTP **POST** request. The La
 ---
 
 
----## Setup Instructions
+## Setup Instructions
 
 1. **Create DynamoDB Table**  
    - Table Name: `registration-table`  
